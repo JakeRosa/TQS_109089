@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Test set: stack.TqsStackTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 0.044 s <<< FAILURE! - in stack.TqsStackTest
+testPushThenPop  Time elapsed: 0.02 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.push(Object)" because "this.s" is null
+	at stack.TqsStackTest.testPushThenPop(TqsStackTest.java:44)
+
+testNewStackIsEmpty  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.isEmpty()" because "this.s" is null
+	at stack.TqsStackTest.testNewStackIsEmpty(TqsStackTest.java:23)
+
+testPushesToEmptyStack  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.push(Object)" because "this.s" is null
+	at stack.TqsStackTest.testPushesToEmptyStack(TqsStackTest.java:35)
+
+testPopOnEmptyStackThrows  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.isEmpty()" because "this.s" is null
+	at stack.TqsStackTest.testPopOnEmptyStackThrows(TqsStackTest.java:72)
+
+testPeekIntoEmptyStackThrows  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.isEmpty()" because "this.s" is null
+	at stack.TqsStackTest.testPeekIntoEmptyStackThrows(TqsStackTest.java:78)
+
+testPushThenPeek  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.push(Object)" because "this.s" is null
+	at stack.TqsStackTest.testPushThenPeek(TqsStackTest.java:51)
+
+testPoppingDownToEmpty  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.push(Object)" because "this.s" is null
+	at stack.TqsStackTest.testPoppingDownToEmpty(TqsStackTest.java:61)
+
+testNewStackHasSizeZero  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "stack.TqsStack.size()" because "this.s" is null
+	at stack.TqsStackTest.testNewStackHasSizeZero(TqsStackTest.java:28)
+

@@ -1,13 +1,14 @@
 package stack;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.NoSuchElementException;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Base test for any class that implements the Stack interface.
@@ -86,7 +87,7 @@ public class TqsStackTest {
     }
 
     @Test
-    public void testPushToFullStackThrows(){
+    public void testPushToFullStackThrows() {
         int max_size = 5;
         TqsStack<Integer> bounded_s = new TqsStack<>(max_size);
 

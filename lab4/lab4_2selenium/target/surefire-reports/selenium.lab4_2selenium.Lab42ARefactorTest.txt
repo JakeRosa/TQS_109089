@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: selenium.lab4_2selenium.Lab42ARefactorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.63 s -- in selenium.lab4_2selenium.Lab42ARefactorTest

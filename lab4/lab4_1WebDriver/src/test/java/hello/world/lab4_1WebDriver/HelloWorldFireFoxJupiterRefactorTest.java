@@ -1,0 +1,31 @@
+package hello.world.lab4_1WebDriver;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
+
+import java.lang.invoke.MethodHandles;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+
+@ExtendWith(SeleniumJupiter.class)
+class HelloWorldFirefoxJupiterRefactorTest {
+
+    static final Logger log = getLogger(MethodHandles.lookup().lookupClass());
+
+    @Test
+    void test(FirefoxDriver driver) {
+        // Exercise
+        String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
+        driver.get(sutUrl);
+        String title = driver.getTitle();
+        log.debug("The title of {} is {}", sutUrl, title);
+
+        // Verify
+        assertThat(title).isEqualTo("Hands-On Selenium WebDriver with Java");
+    }
+}

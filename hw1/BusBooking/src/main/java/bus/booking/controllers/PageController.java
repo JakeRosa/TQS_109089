@@ -60,4 +60,14 @@ public class PageController {
 
         return "checkout";
     }
+
+    @GetMapping("/reservation")
+    public String reservation() {
+        return "reservation";
+    }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
+    }
 }

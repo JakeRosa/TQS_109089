@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Booking Service</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <script>
         function validateForm() {
             var origin = document.getElementById("origin").value;
@@ -32,6 +33,13 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <a th:href="@{/}" class="nav-brand">Bus Booking Service</a>
+        <div class="nav-links">
+            <a href="/reservation" class="nav-link">Check Reservations</a>
+        </div>
+    </nav>
+
     <div class="background-image">
         <div class="container">
             <h1>Welcome to the Bus Booking Service</h1>

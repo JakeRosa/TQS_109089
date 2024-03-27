@@ -42,47 +42,22 @@ h1 {
     margin-bottom: 30px;
 }
 
-form {
-    margin-top: 20px;
+.buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
-label {
-    display: block;
-    margin-bottom: 15px;
-    color: #555;
-}
-
-select,
-button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    /* Tamanho da fonte */
-    color: #555;
-    /* Cor do texto */
-}
-
-
-button {
+.button {
     background-color: #00B200;
     color: #fff;
     font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-button:hover {
+.button:hover {
     background-color: #006400;
 }

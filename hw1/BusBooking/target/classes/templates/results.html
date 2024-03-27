@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking Service - Results</title>
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-image">
+        <div class="container">
+
+            <h1>Results of the trip from <span th:text="${origin}"></span> to <span th:text="${destination}"></span>
+            </h1>
+
+            <a th:href="@{/}" class="back-button"><i class="fas fa-arrow-left"></i></a>
+
+            <div class="currency-selector">
+                <label for="currency">Currency:</label>
+                <select name="currency" id="currency">
+                    <option value="USD">USD</option>
+                    <option value="EUR" selected>EUR</option>
+                    <option value="GBP">GBP</option>
+                </select>
+            </div>
+
+            <div th:if="${results} != null">
+                <table>
+                    <tr>
+                        <th>Trip ID</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Duration</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="result : ${results}">
+                        <td th:text="${result.id}"></td>
+                        <td th:text="${result.departureTime}"></td>
+                        <td th:text="${result.arrivalTime}"></td>
+                        <td th:text="${result.duration}"></td>
+                        <td th:text="${result.price}"></td>
+                        <td>
+                            <a
+                                th:href="@{/checkout(origin=${origin}, destination=${destination}, date=${date}, tripId=${result.id}, departureTime=${result.departureTime}, arrivalTime=${result.arrivalTime}, duration=${result.duration}, price=${result.price})}">
+                                <button class="buy-button">Buy</button>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div th:if="${results} == null">
+                <p>No results found for the selected trip.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

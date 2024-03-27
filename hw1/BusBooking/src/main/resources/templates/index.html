@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking Service</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        function validateForm() {
+            var origin = document.getElementById("origin").value;
+            var destination = document.getElementById("destination").value;
+
+            if (origin === destination) {
+                alert("Origin and destination cities cannot be the same.");
+                return false;
+            }
+            return true;
+        }
+
+        function validateDate() {
+            var date = document.getElementById("date").value;
+            var today = new Date().toISOString().split("T")[0];
+
+            if (date < today) {
+                alert("Date of departure needs to be from today onwards.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="background-image">
+        <div class="container">
+            <h1>Welcome to the Bus Booking Service</h1>
+
+            <form action="#" th:action="@{/results}" method="get" onsubmit="return validateForm() && validateDate()">
+                <label for="origin">From:</label>
+                <select name="origin" id="origin">
+                    <option th:each="city : ${cities}" th:value="${city}" th:text="${city}"></option>
+                </select>
+
+                <label for="destination">To:</label>
+                <select name="destination" id="destination">
+                    <option th:each="city : ${cities}" th:value="${city}" th:text="${city}"></option>
+                </select>
+
+                <label for="date">Date of Departute:</label>
+                <input type="date" id="date" name="date" required>
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

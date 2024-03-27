@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db_pg:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: busbooking
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 1m30s
+      timeout: 30s
+      retries: 3
+      start_period: 30s
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  api:
+    depends_on:
+      - db_pg
+    build:
+      context: ./BusBooking
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_JSON: '{ "spring.datasource.url" : "jdbc:postgresql://db_pg:5432/busbooking", "spring.datasource.username" : "postgres", "spring.datasource.password" : "postgres", "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect", "logging.level.org.springframework" : "DEBUG" }'
+    volumes:
+      - ./BusBooking/src/main/resources/templates:/BusBooking/src/main/resources/templates
+  # init_psql_db:
+  #   depends_on:
+  #     - db_pg
+  #   build:
+  #     context: init_db
+
+volumes:
+  pg_data:
+    driver: local

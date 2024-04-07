@@ -61,3 +61,22 @@ h1 {
 .button:hover {
     background-color: #006400;
 }
+
+.reservation-id-box {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.reservation-id-box p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.reservation-id-box span {
+    font-weight: bold;
+    color: #333;
+}

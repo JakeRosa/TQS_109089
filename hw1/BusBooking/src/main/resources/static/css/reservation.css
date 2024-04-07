@@ -79,3 +79,33 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #006400;
 }
+
+/* Estilo para tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Estilo para cabeçalhos de coluna */
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo para células de dados */
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para a primeira linha da tabela */
+tr:first-child th {
+    border-top: 1px solid #ddd;
+}
+
+/* Estilo para linhas alternadas da tabela */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

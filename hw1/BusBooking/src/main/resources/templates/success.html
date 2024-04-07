@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Successful</title>
     <link rel="stylesheet" href="css/success.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 
 <body>
@@ -19,6 +20,10 @@
     <div class="background-image">
         <div class="container">
             <h1>Purchase Successful</h1>
+            <div class="reservation-id-box">
+                <p>Reservation ID</p>
+                <p><span th:text="${reservationId}"></span></p>
+            </div>
             <div class="buttons">
                 <a href="/" class="button">Back to Initial Page</a>
                 <a href="/reservation" class="button">Check Reservation</a>

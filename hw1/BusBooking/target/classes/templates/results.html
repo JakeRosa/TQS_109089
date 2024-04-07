@@ -28,32 +28,33 @@
 
             <div class="currency-selector">
                 <label for="currency">Currency:</label>
-                <select name="currency" id="currency">
-                    <option value="USD">USD</option>
-                    <option value="EUR" selected>EUR</option>
-                    <option value="GBP">GBP</option>
+                <select name="currency" id="currency" onchange="updateCurrency(this.value)">
+                    <option th:each="cur : ${currencies}" th:value="${cur}" th:text="${cur}"
+                        th:selected="${cur == currency}"></option>
                 </select>
             </div>
 
             <div th:if="${results} != null">
                 <table>
                     <tr>
-                        <th>Trip ID</th>
+                        <th>Bus</th>
                         <th>Departure Time</th>
                         <th>Arrival Time</th>
                         <th>Duration</th>
+                        <th>Available Seats</th>
                         <th>Price</th>
                         <th></th>
                     </tr>
                     <tr th:each="result : ${results}">
-                        <td th:text="${result.id}"></td>
-                        <td th:text="${result.departureTime}"></td>
-                        <td th:text="${result.arrivalTime}"></td>
-                        <td th:text="${result.duration}"></td>
-                        <td th:text="${result.price}"></td>
+                        <td th:text="${result.key.busId}"></td>
+                        <td th:text="${result.key.departureTime}"></td>
+                        <td th:text="${result.key.arrivalTime}"></td>
+                        <td th:text="${result.key.duration}"></td>
+                        <td th:text="${result.key.availableSeats}"></td>
+                        <td th:text="${result.value}"></td>
                         <td>
                             <a
-                                th:href="@{/checkout(origin=${origin}, destination=${destination}, date=${date}, tripId=${result.id}, departureTime=${result.departureTime}, arrivalTime=${result.arrivalTime}, duration=${result.duration}, price=${result.price})}">
+                                th:href="@{/checkout(origin=${origin}, destination=${destination}, date=${date}, tripId=${result.key.id}, currency=${currency}, finalPrice=${result.value})}">
                                 <button class="buy-button">Buy</button>
                             </a>
                         </td>
@@ -66,6 +67,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function updateCurrency(currency) {
+            var url = new URL(window.location.href);
+            url.searchParams.set('currency', currency);
+            window.location.href = url;
+        }
+    </script>
 </body>
 
 </html>

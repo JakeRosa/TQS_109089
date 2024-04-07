@@ -82,12 +82,56 @@
 
             <div class="total">
                 <h2>Total:</h2>
-                <p>$10.00</p>
+                <p th:text="${finalPrice} + ' ' + ${currency}"></p>
             </div>
 
-            <a href="/success" class="buy-button"><button type="submit" class="buy-button">Pay Now</button></a>
+            <button id="pay-now" class="buy-button">Pay Now</button>
         </div>
     </div>
+
+    <script th:inline="javascript">
+        document.getElementById('pay-now').addEventListener('click', function (event) {
+            event.preventDefault(); // Evita o comportamento padrão de envio do formulário
+
+            var tripId = /*[[${ tripId }]]*/ 0;
+            var currency = /*[[${ currency }]]*/ 'EUR';
+            var finalPrice = /*[[${ finalPrice }]]*/ 0;
+
+            var now = new Date();
+            var reservationDate = now.toISOString();
+
+            // Constrói um objeto JSON com todas as informações
+            var postData = {
+                passengerName: document.getElementById('name').value,
+                passengerEmail: document.getElementById('email').value,
+                passengerPhone: document.getElementById('phone').value,
+                reservationDate: reservationDate,
+                paymentMethod: document.getElementById('card-type').value,
+                currency: currency,
+                tripId: tripId,
+                finalPrice: finalPrice
+            };
+
+            // Envia os dados como uma solicitação POST para o endpoint desejado
+            fetch('/create-reservation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            }).then(function (response) {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    console.error('Error:', response.statusText);
+                }
+            }).then(function (reservationId) {
+                window.location.href = '/success?reservationId=' + reservationId;
+            }).catch(function (error) {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 
 </html>

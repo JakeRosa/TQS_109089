@@ -17,9 +17,20 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+
+  cache:
+    container_name: cache
+    image: redis:latest
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 50s
+      retries: 5
+
   api:
     depends_on:
       - db_pg
+      - cache
     build:
       context: ./BusBooking
     restart: unless-stopped
@@ -27,13 +38,12 @@ services:
       - "8080:8080"
     environment:
       SPRING_APPLICATION_JSON: '{ "spring.datasource.url" : "jdbc:postgresql://db_pg:5432/busbooking", "spring.datasource.username" : "postgres", "spring.datasource.password" : "postgres", "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect", "logging.level.org.springframework" : "DEBUG" }'
-    volumes:
-      - ./BusBooking/src/main/resources/templates:/BusBooking/src/main/resources/templates
-  # init_psql_db:
-  #   depends_on:
-  #     - db_pg
-  #   build:
-  #     context: init_db
+
+  init_psql_db:
+    depends_on:
+      - db_pg
+    build:
+      context: init_db
 
 volumes:
   pg_data:

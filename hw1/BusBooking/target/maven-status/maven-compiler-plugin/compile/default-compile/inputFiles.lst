@@ -1,3 +1,14 @@
-/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/BusBookingApplication.java
-/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/entities/StaticResult.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/impl/CurrencyServiceImpl.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/entities/Trip.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/impl/TripServiceImpl.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/entities/Reservation.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/controllers/PageController.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/entities/DTO/ReservationRequest.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/impl/ReservationServiceImpl.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/repositories/TripRepository.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/BusBookingApplication.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/repositories/ReservationRepository.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/entities/DTO/ReservationDTO.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/ReservationService.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/TripService.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/main/java/bus/booking/services/CurrencyService.java

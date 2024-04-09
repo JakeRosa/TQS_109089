@@ -18,7 +18,7 @@ import bus.booking.repositories.ReservationRepository;
 import bus.booking.repositories.TripRepository;
 
 @DataJpaTest
-public class RepositoryTest {
+class RepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 

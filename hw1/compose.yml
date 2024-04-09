@@ -26,6 +26,8 @@ services:
       interval: 10s
       timeout: 50s
       retries: 5
+    ports:
+      - "6379:6379"
 
   api:
     depends_on:
@@ -36,6 +38,8 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       SPRING_APPLICATION_JSON: '{ "spring.datasource.url" : "jdbc:postgresql://db_pg:5432/busbooking", "spring.datasource.username" : "postgres", "spring.datasource.password" : "postgres", "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect", "logging.level.org.springframework" : "DEBUG" }'
 

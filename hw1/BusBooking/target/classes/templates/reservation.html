@@ -24,35 +24,35 @@
             <input type="text" id="reservation-code" th:field="*{reservationId}" required>
             <button type="submit">Check</button>
         </form>
-        <div th:if="${reservation != null}">
+        <div th:if="${reservationResponse != null}">
             <h2>Reservation Details</h2>
             <table>
                 <tr>
                     <th>Passenger Name</th>
-                    <td th:text="${reservation.passengerName}"></td>
+                    <td th:text="${reservationResponse.passengerName}"></td>
                 </tr>
                 <tr>
                     <th>Passenger Email</th>
-                    <td th:text="${reservation.passengerEmail}"></td>
+                    <td th:text="${reservationResponse.passengerEmail}"></td>
                 </tr>
                 <tr>
                     <th>Passenger Phone</th>
-                    <td th:text="${reservation.passengerPhone}"></td>
+                    <td th:text="${reservationResponse.passengerPhone}"></td>
                 </tr>
                 <tr>
                     <th>Reservation Date</th>
-                    <td th:text="${reservation.reservationDate}"></td>
+                    <td th:text="${reservationResponse.reservationDate}"></td>
                 <tr>
                 <tr>
                     <th>Payment Method</th>
-                    <td th:text="${reservation.paymentMethod}"></td>
+                    <td th:text="${reservationResponse.paymentMethod}"></td>
                 </tr>
                 <tr>
                     <th>Original Price</th>
-                    <td th:text="${reservation.trip.priceEuro} + ' EUR'"></td>
+                    <td th:text="${reservationResponse.trip.priceEuro} + ' EUR'"></td>
                 <tr>
                     <th>Final Price</th>
-                    <td th:text="${reservation.finalPrice} + ' ' + ${reservation.currency}"></td>
+                    <td th:text="${reservationResponse.finalPrice} + ' ' + ${reservationResponse.currency}"></td>
                 </tr>
             </table>
 
@@ -60,31 +60,31 @@
             <table>
                 <tr>
                     <th>Bus ID</th>
-                    <td th:text="${reservation.trip.busId}"></td>
+                    <td th:text="${reservationResponse.trip.busId}"></td>
                 </tr>
                 <tr>
                     <th>Origin</th>
-                    <td th:text="${reservation.trip.origin}"></td>
+                    <td th:text="${reservationResponse.trip.origin}"></td>
                 </tr>
                 <tr>
                     <th>Destination</th>
-                    <td th:text="${reservation.trip.destination}"></td>
+                    <td th:text="${reservationResponse.trip.destination}"></td>
                 </tr>
                 <tr>
                     <th>Departure Date</th>
-                    <td th:text="${reservation.trip.date}"></td>
+                    <td th:text="${reservationResponse.trip.date}"></td>
                 </tr>
                 <tr>
                     <th>Departure Time</th>
-                    <td th:text="${reservation.trip.departureTime}"></td>
+                    <td th:text="${reservationResponse.trip.departureTime}"></td>
                 </tr>
                 <tr>
                     <th>Arrival Time</th>
-                    <td th:text="${reservation.trip.arrivalTime}"></td>
+                    <td th:text="${reservationResponse.trip.arrivalTime}"></td>
                 </tr>
                 <tr>
                     <th>Duration</th>
-                    <td th:text="${reservation.trip.duration}"></td>
+                    <td th:text="${reservationResponse.trip.duration}"></td>
                 </tr>
             </table>
         </div>

@@ -58,10 +58,12 @@ public class CurrencyServiceImpl implements CurrencyService {
                 currencyList.add(currencySymbol);
             }
 
+            log.info("Currency list fetched successfully");
             return currencyList;
 
         } catch (IOException e) {
-            return null;
+            log.error("API error occurred");
+            return new ArrayList<>();
         }
     }
 
@@ -72,8 +74,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         try (Jedis jedis = cache.getResource()) {
             if (!jedis.exists(currency)) {
                 log.info("Currency not found in cache, fetching from API");
-
-                OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
                         .url("https://twelve-data1.p.rapidapi.com/exchange_rate?symbol=EUR%2F" + currency)
@@ -97,7 +97,8 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             return Math.round(price * rate * 100.0) / 100.0;
-        } catch (IOException e) {
+        } catch (Exception e) {
+            log.error("Cache or API error occurred");
             return -1;
         }
     }

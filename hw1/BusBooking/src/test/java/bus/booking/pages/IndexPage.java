@@ -1,21 +1,15 @@
 package bus.booking.pages;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class IndexPage {
-    private WebDriver driver;
-
     @FindBy(xpath = "/html/body/nav/div/a")
     private WebElement checkReservationButton;
 
-    @FindBy(xpath = "//*[@id=\"origin\"]")
+    @FindBy(name = "origin")
     private WebElement originSelect;
 
     @FindBy(xpath = "//*[@id=\"destination\"]")
@@ -28,7 +22,6 @@ public class IndexPage {
     private WebElement searchButton;
 
     public IndexPage(WebDriver driver) {
-        this.driver = driver;
         driver.get("http://localhost:8080/");
         PageFactory.initElements(driver, this);
     }
@@ -38,7 +31,6 @@ public class IndexPage {
     }
 
     public void selectOrigin(String origin) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(originSelect));
         originSelect.sendKeys(origin);
     }
 

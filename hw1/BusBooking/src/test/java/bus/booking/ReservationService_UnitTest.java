@@ -19,13 +19,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import bus.booking.entities.Reservation;
 import bus.booking.entities.Trip;
-import bus.booking.entities.DTO.ReservationDTO;
+import bus.booking.entities.dto.ReservationDTO;
 import bus.booking.repositories.ReservationRepository;
 import bus.booking.repositories.TripRepository;
 import bus.booking.services.impl.ReservationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class ReservationService_UnitTest {
+class ReservationService_UnitTest {
         @Mock(lenient = true)
         private ReservationRepository reservationRepository;
 
@@ -39,7 +39,7 @@ public class ReservationService_UnitTest {
         private Reservation reservation;
 
         @BeforeEach
-        public void setUp() {
+        void setUp() {
                 Date date = new java.util.Date();
                 reservationDTO = new ReservationDTO("John Smith Carabina",
                                 "john.smith.carabina@gmail.com",
@@ -56,14 +56,14 @@ public class ReservationService_UnitTest {
         }
 
         @Test
-        public void testCreateReservation() {
+        void testCreateReservation() {
                 assertThat(reservationService.createReservation(reservationDTO)).isEqualTo(reservation);
 
                 verify(tripRepository, times(1)).findById(1L);
         }
 
         @Test
-        public void testGetReservationById() {
+        void testGetReservationById() {
                 assertThat(reservationService.getReservationById("1234567890")).isEqualTo(reservation);
 
                 verify(reservationRepository, times(1)).findById("1234567890");

@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import bus.booking.entities.Reservation;
-import bus.booking.entities.DTO.ReservationDTO;
+import bus.booking.entities.dto.ReservationDTO;
 import bus.booking.repositories.ReservationRepository;
 import bus.booking.repositories.TripRepository;
 import bus.booking.services.ReservationService;

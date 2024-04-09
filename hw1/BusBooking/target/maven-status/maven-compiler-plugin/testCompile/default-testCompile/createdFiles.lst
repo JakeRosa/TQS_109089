@@ -1,4 +1,14 @@
+bus/booking/CucumberTest.class
+bus/booking/RepositoryTest.class
+bus/booking/pages/CheckoutPage.class
+bus/booking/pages/IndexPage.class
+bus/booking/CurrencyServiceTest.class
+bus/booking/PageControllerIT.class
+bus/booking/CucumberSteps.class
 bus/booking/PageController_WithMockServiceTest.class
+bus/booking/pages/ResultsPage.class
+bus/booking/pages/SuccessPage.class
+bus/booking/SeleniumTest.class
 bus/booking/TripService_UnitTest.class
-bus/booking/CurrencyService_UnitTest.class
 bus/booking/ReservationService_UnitTest.class
+bus/booking/pages/ReservationPage.class

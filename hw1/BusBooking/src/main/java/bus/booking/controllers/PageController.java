@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import bus.booking.entities.Reservation;
 import bus.booking.entities.Trip;
-import bus.booking.entities.DTO.ReservationDTO;
-import bus.booking.entities.DTO.ReservationRequest;
+import bus.booking.entities.dto.ReservationDTO;
+import bus.booking.entities.dto.ReservationRequest;
 import bus.booking.services.impl.CurrencyServiceImpl;
 import bus.booking.services.impl.ReservationServiceImpl;
 import bus.booking.services.impl.TripServiceImpl;
@@ -28,8 +28,13 @@ public class PageController {
     private TripServiceImpl tripService;
     @Autowired
     private ReservationServiceImpl reservationService;
+
+    private final CurrencyServiceImpl currencyService;
+
     @Autowired
-    private CurrencyServiceImpl currencyService;
+    public PageController(CurrencyServiceImpl currencyService) {
+        this.currencyService = currencyService;
+    }
 
     @GetMapping("/")
     public String index(Model model) {
@@ -115,7 +120,7 @@ public class PageController {
             Model model) {
         Reservation reservation = reservationService.getReservationById(reservationRequest.getReservationId());
 
-        model.addAttribute("reservation", reservation);
+        model.addAttribute("reservationResponse", reservation);
 
         return "reservation";
     }

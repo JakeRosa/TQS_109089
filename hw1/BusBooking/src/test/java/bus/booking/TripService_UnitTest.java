@@ -25,7 +25,7 @@ import bus.booking.repositories.TripRepository;
 import bus.booking.services.impl.TripServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class TripService_UnitTest {
+class TripService_UnitTest {
     @Mock(lenient = true)
     private TripRepository tripRepository;
 
@@ -33,7 +33,7 @@ public class TripService_UnitTest {
     private TripServiceImpl tripService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Trip trip1 = new Trip(1L, "Porto", "Lisboa", LocalDate.of(2024, 05, 05), Time.valueOf("08:00:00"),
                 Time.valueOf("12:00:00"), "4h", 20.0, "BUS001", 50);
 
@@ -52,7 +52,7 @@ public class TripService_UnitTest {
     }
 
     @Test
-    public void testGetAllCities() {
+    void testGetAllCities() {
         Set<String> cities = tripService.getAllCities();
 
         assertThat(cities, hasSize(2));
@@ -61,7 +61,7 @@ public class TripService_UnitTest {
     }
 
     @Test
-    public void testGetTripsByOriginDestinationDate() {
+    void testGetTripsByOriginDestinationDate() {
         List<Trip> trips = tripService.getTripsByOriginDestinationDate("Porto", "Lisboa", LocalDate.of(2024, 05, 05));
 
         assertThat(trips, hasSize(1));
@@ -71,7 +71,7 @@ public class TripService_UnitTest {
     }
 
     @Test
-    public void testGetTripById() {
+    void testGetTripById() {
         Trip trip = tripService.getTripById(1L);
 
         assertThat(trip.getOrigin(), is("Porto"));

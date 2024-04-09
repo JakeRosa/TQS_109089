@@ -3,6 +3,8 @@ package cars.service.lab3_2cars;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -58,6 +60,8 @@ public class CarService_UnitTest {
     public void getAllCarsTest() {
         List<Car> allCars = carManagerService.getAllCars();
         assertThat(allCars, hasSize(3));
+
+        verify(carRepository, times(1)).findAll();
     }
 
     @Test
@@ -67,6 +71,8 @@ public class CarService_UnitTest {
         when(carRepository.findById(myCar.getId())).thenReturn(myCar);
 
         assertThat(carManagerService.getCarDetails(myCar.getId()).get(), is(myCar));
+
+        verify(carRepository, times(1)).findById(myCar.getId());
     }
 
     @Test
@@ -74,5 +80,7 @@ public class CarService_UnitTest {
         when(carRepository.findById(0)).thenReturn(null);
 
         assertThat(carManagerService.getCarDetails(0).isPresent(), is(false));
+
+        verify(carRepository, times(1)).findById(0);
     }
 }

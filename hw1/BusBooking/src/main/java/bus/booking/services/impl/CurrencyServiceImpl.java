@@ -40,6 +40,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public List<String> getAllCurrencies() {
+        log.info("Fetching currency list from API");
+
         Request request = new Request.Builder()
                 .url("https://twelve-data1.p.rapidapi.com/forex_pairs?format=json&currency_base=EUR")
                 .get()
@@ -65,6 +67,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
 
             log.info("Currency list fetched successfully");
+
             return currencyList;
 
         } catch (IOException e) {

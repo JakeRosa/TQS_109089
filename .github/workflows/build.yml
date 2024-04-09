@@ -21,7 +21,7 @@ jobs:
     
     defaults:
         run:
-            working-directory: hw1/BusBooking
+            working-directory: hw1/hw/BusBooking
 
     steps:
       - uses: actions/checkout@v3

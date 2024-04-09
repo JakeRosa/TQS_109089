@@ -1,6 +1,7 @@
 package bus.booking;
 
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,6 +32,7 @@ import bus.booking.controllers.PageController;
 import bus.booking.entities.Reservation;
 import bus.booking.entities.Trip;
 import bus.booking.entities.dto.ReservationDTO;
+import bus.booking.services.impl.CacheStatsServiceImpl;
 import bus.booking.services.impl.CurrencyServiceImpl;
 import bus.booking.services.impl.ReservationServiceImpl;
 import bus.booking.services.impl.TripServiceImpl;
@@ -48,6 +50,9 @@ class PageController_WithMockServiceTest {
 
         @MockBean
         private CurrencyServiceImpl currencyService;
+
+        @MockBean
+        private CacheStatsServiceImpl cacheStatsService;
 
         private Trip trip1;
         private ReservationDTO reservationDTO;
@@ -150,6 +155,54 @@ class PageController_WithMockServiceTest {
         }
 
         @Test
+        void testResultsWithGetAllCurrenciesFailure() throws Exception {
+                when(tripService.getTripsByOriginDestinationDate("Lisboa", "Porto", LocalDate.parse("2024-05-05")))
+                                .thenReturn(Arrays.asList(trip1));
+
+                when(currencyService.getAllCurrencies()).thenReturn(Arrays.asList());
+
+                when(currencyService.convertCurrency(trip1.getPriceEuro(), "USD")).thenReturn(22.0);
+
+                Map<Trip, Double> tripsFound = new HashMap<>();
+
+                tripsFound.put(trip1, 22.0);
+
+                mvc.perform(get("/results").param("origin", "Lisboa").param("destination", "Porto")
+                                .param("date", "2024-05-05")
+                                .param("currency", "USD")).andExpect(status().isOk()).andExpect(view().name("results"))
+                                .andExpect(model().attribute("origin", "Lisboa"))
+                                .andExpect(model().attribute("destination", "Porto"))
+                                .andExpect(model().attribute("date", "2024-05-05"))
+                                .andExpect(model().attribute("currency", "USD"))
+                                .andExpect(model().attribute("results", tripsFound))
+                                .andExpect(model().attribute("currencies", Arrays.asList()));
+        }
+
+        @Test
+        void testResultsWithConvertCurrencyFailure() throws Exception {
+                when(tripService.getTripsByOriginDestinationDate("Lisboa", "Porto", LocalDate.parse("2024-05-05")))
+                                .thenReturn(Arrays.asList(trip1));
+
+                when(currencyService.getAllCurrencies()).thenReturn(Arrays.asList("EUR", "USD"));
+
+                when(currencyService.convertCurrency(trip1.getPriceEuro(), "USD")).thenReturn(-1.0);
+
+                Map<Trip, Double> tripsFound = new HashMap<>();
+
+                tripsFound.put(trip1, -1.0);
+
+                mvc.perform(get("/results").param("origin", "Lisboa").param("destination", "Porto")
+                                .param("date", "2024-05-05")
+                                .param("currency", "USD")).andExpect(status().isOk()).andExpect(view().name("results"))
+                                .andExpect(model().attribute("origin", "Lisboa"))
+                                .andExpect(model().attribute("destination", "Porto"))
+                                .andExpect(model().attribute("date", "2024-05-05"))
+                                .andExpect(model().attribute("currency", "USD"))
+                                .andExpect(model().attribute("results", tripsFound))
+                                .andExpect(model().attribute("currencies", Arrays.asList("EUR", "USD")));
+        }
+
+        @Test
         void testCheckout() throws Exception {
                 mvc.perform(get("/checkout")
                                 .param("origin", "Lisboa")
@@ -206,6 +259,29 @@ class PageController_WithMockServiceTest {
                                 .andExpect(status().isOk())
                                 .andExpect(view().name("reservation"))
                                 .andExpect(model().attribute("reservationResponse", reservation));
+        }
+
+        @Test
+        void testReservationResponseWithInvalidCode() throws Exception {
+                mvc.perform(post("/reservation")
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .param("reservationId", "invalidCode"))
+                                .andExpect(status().isOk())
+                                .andExpect(view().name("reservation"))
+                                .andExpect(model().attribute("reservationResponse", nullValue()));
+        }
+
+        @Test
+        void testCacheStats() throws Exception {
+                when(cacheStatsService.getHit()).thenReturn(10);
+                when(cacheStatsService.getMiss()).thenReturn(5);
+                when(cacheStatsService.getPut()).thenReturn(5);
+                when(cacheStatsService.getRequests()).thenReturn(15);
+
+                mvc.perform(get("/cacheStats"))
+                                .andExpect(status().isOk())
+                                .andExpect(view().name("cacheStats"))
+                                .andExpect(model().attribute("cacheStats", cacheStatsService));
         }
 
 }

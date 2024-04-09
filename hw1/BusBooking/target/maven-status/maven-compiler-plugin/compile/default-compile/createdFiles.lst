@@ -1,4 +1,6 @@
+bus/booking/services/impl/CacheStatsServiceImpl.class
 bus/booking/services/impl/TripServiceImpl.class
+bus/booking/services/CacheStatsService.class
 bus/booking/BusBookingApplication.class
 bus/booking/entities/Trip.class
 bus/booking/services/impl/ReservationServiceImpl.class

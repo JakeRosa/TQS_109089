@@ -7,6 +7,7 @@ bus/booking/PageControllerIT.class
 bus/booking/CucumberSteps.class
 bus/booking/PageController_WithMockServiceTest.class
 bus/booking/pages/ResultsPage.class
+bus/booking/CacheStatsService_UnitTest.class
 bus/booking/pages/SuccessPage.class
 bus/booking/SeleniumTest.class
 bus/booking/TripService_UnitTest.class

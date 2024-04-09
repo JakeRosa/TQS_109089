@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Stats</title>
+    <link rel="stylesheet" href="css/cacheStats.css">
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a th:href="@{/}" class="nav-brand">Bus Booking Service</a>
+        <div class="nav-links">
+            <a href="/cacheStats" class="nav-link">Cache Stats</a>
+            <a href="/reservation" class="nav-link">Check Reservations</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Cache Statistics</h1>
+        <div class="cache-info">
+            <p>Cache Hits: <span th:text="${cacheStats.hit}"></span></p>
+            <p>Cache Misses: <span th:text="${cacheStats.miss}"></span></p>
+            <p>Cache Puts: <span th:text="${cacheStats.put}"></span></p>
+            <p>Total Requests: <span th:text="${cacheStats.requests}"></span></p>
+        </div>
+    </div>
+</body>
+
+</html>

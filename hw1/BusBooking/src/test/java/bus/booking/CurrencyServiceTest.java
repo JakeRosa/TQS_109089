@@ -3,6 +3,8 @@ package bus.booking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import bus.booking.services.impl.CacheStatsServiceImpl;
 import bus.booking.services.impl.CurrencyServiceImpl;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -49,6 +52,9 @@ class CurrencyServiceTest {
 
     @Mock
     private Jedis jedis;
+
+    @Mock
+    private CacheStatsServiceImpl cacheStatsService;
 
     @InjectMocks
     private CurrencyServiceImpl currencyService;
@@ -90,6 +96,9 @@ class CurrencyServiceTest {
         double result = currencyService.convertCurrency(price, currency);
 
         assertEquals(expected, result);
+
+        verify(cacheStatsService, times(1)).miss();
+        verify(cacheStatsService, times(1)).put();
     }
 
     @Test
@@ -135,6 +144,8 @@ class CurrencyServiceTest {
         double result = currencyService.convertCurrency(price, currency);
 
         assertEquals(expected, result);
+
+        verify(cacheStatsService, times(1)).hit();
     }
 
     @Test

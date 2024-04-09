@@ -18,6 +18,7 @@ import bus.booking.entities.Reservation;
 import bus.booking.entities.Trip;
 import bus.booking.entities.dto.ReservationDTO;
 import bus.booking.entities.dto.ReservationRequest;
+import bus.booking.services.impl.CacheStatsServiceImpl;
 import bus.booking.services.impl.CurrencyServiceImpl;
 import bus.booking.services.impl.ReservationServiceImpl;
 import bus.booking.services.impl.TripServiceImpl;
@@ -31,9 +32,12 @@ public class PageController {
 
     private final CurrencyServiceImpl currencyService;
 
+    private final CacheStatsServiceImpl cacheStatsService;
+
     @Autowired
-    public PageController(CurrencyServiceImpl currencyService) {
+    public PageController(CurrencyServiceImpl currencyService, CacheStatsServiceImpl cacheStatsService) {
         this.currencyService = currencyService;
+        this.cacheStatsService = cacheStatsService;
     }
 
     @GetMapping("/")
@@ -123,5 +127,12 @@ public class PageController {
         model.addAttribute("reservationResponse", reservation);
 
         return "reservation";
+    }
+
+    @GetMapping("/cacheStats")
+    public String cacheStats(Model model) {
+        model.addAttribute("cacheStats", cacheStatsService);
+
+        return "cacheStats";
     }
 }

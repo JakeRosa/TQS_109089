@@ -10,6 +10,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bus.booking.services.CurrencyService;
@@ -25,11 +26,16 @@ import redis.clients.jedis.JedisPool;
 public class CurrencyServiceImpl implements CurrencyService {
     private JedisPool cache;
     private OkHttpClient client;
+
+    private final CacheStatsServiceImpl cacheStatsService;
+
     static final Logger log = getLogger(lookup().lookupClass());
 
-    public CurrencyServiceImpl() {
+    @Autowired
+    public CurrencyServiceImpl(CacheStatsServiceImpl cacheStatsService) {
         this.cache = new JedisPool("cache", 6379);
         this.client = new OkHttpClient();
+        this.cacheStatsService = cacheStatsService;
     }
 
     @Override
@@ -73,6 +79,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
         try (Jedis jedis = cache.getResource()) {
             if (!jedis.exists(currency)) {
+                cacheStatsService.miss();
                 log.info("Currency not found in cache, fetching from API");
 
                 Request request = new Request.Builder()
@@ -90,10 +97,12 @@ public class CurrencyServiceImpl implements CurrencyService {
                 rate = jsonObject.getDouble("rate");
 
                 jedis.setex(currency, 3600, Double.toString(rate));
+                cacheStatsService.put();
             } else {
                 log.info("Currency found in cache");
 
                 rate = Double.parseDouble(jedis.get(currency));
+                cacheStatsService.hit();
             }
 
             return Math.round(price * rate * 100.0) / 100.0;

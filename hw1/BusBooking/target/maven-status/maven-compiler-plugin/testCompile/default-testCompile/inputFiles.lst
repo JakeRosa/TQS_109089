@@ -8,6 +8,7 @@
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/CucumberSteps.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/PageControllerIT.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/pages/CheckoutPage.java
+/home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/CacheStatsService_UnitTest.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/CucumberTest.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/PageController_WithMockServiceTest.java
 /home/jakerosa/Desktop/Uni/3ano_2semestre/TQS_109089/hw1/BusBooking/src/test/java/bus/booking/RepositoryTest.java

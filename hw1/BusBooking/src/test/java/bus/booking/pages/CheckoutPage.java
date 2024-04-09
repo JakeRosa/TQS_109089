@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutPage {
-    @FindBy(xpath = "/html/body/nav/div/a")
+    @FindBy(xpath = "/html/body/nav/div/a[2]")
     private WebElement checkReservationButton;
 
     @FindBy(xpath = "/html/body/div/div/a")

@@ -1,0 +1,6 @@
+projectKey=hw1
+serverUrl=http://localhost:9000
+serverVersion=10.4.1.88267
+dashboardUrl=http://localhost:9000/dashboard?id=hw1
+ceTaskId=335cbb30-e1c2-4c97-b60b-7ee608d08fca
+ceTaskUrl=http://localhost:9000/api/ce/task?id=335cbb30-e1c2-4c97-b60b-7ee608d08fca

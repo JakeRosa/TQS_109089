@@ -26,7 +26,7 @@ services:
       interval: 10s
       timeout: 50s
       retries: 5
-    ports:
+    expose:
       - "6379:6379"
 
   api:
